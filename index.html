@@ -64,12 +64,31 @@
     text-align: center;
     padding: 20px;
   }
+  .button-link {
+        display: inline-block;
+        padding: 10px 20px;
+        margin-left: 30px;
+        background-color: #4caf50;
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+        font-size: 16px;
+      }
+
+      .button-link:hover {
+        background-color: #45a049;
+      }
 </style>
 </head>
 <body>
 
 <div class="container">
   <h1>Data Akun Info GTK SDN TOYANING I</h1>
+  <a
+        href="https://portal-admin-sd-toyaning-01.vercel.app/"
+        class="button-link"
+        >Kembali Ke Portal Admin</a
+      >
   <div id="employee-data">
     <p class="loading">Memuat data...</p>
   </div>
@@ -126,4 +145,5 @@
 </script>
 
 </body>
+
 </html>
