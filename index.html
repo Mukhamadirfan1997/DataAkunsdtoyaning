@@ -1,19 +1,21 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
+
   <title>Data Akun Info GTK SDN TOYANING I</title>
   <link rel="shortcut icon" type="image/x-icon" href="https://data-akun-infogtk-sdtoyaning.vercel.app/Logosekolah.png">
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
   <style>
-    body { 
-      font-family: 'Roboto', sans-serif; 
-      margin: 0; 
+    body {
+      font-family: 'Roboto', sans-serif;
+      margin: 0;
       background-color: #b3e3f5;
       color: #333;
     }
+
     .container {
       max-width: 900px;
       margin: 20px auto;
@@ -24,6 +26,7 @@
       width: 95%;
       position: relative;
     }
+
     h1 {
       color: #2c3e50;
       text-align: center;
@@ -33,42 +36,55 @@
       padding-bottom: 10px;
       display: inline-block;
     }
+
     .header-container {
       text-align: center;
       margin-bottom: 20px;
     }
-    table { 
-      width: 100%; 
-      border-collapse: collapse; 
-      margin-top: 20px; 
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
     }
-    th, td { 
-      border: 1px solid #e0e0e0; 
-      padding: 12px 15px; 
-      text-align: left; 
+
+    th,
+    td {
+      border: 1px solid #e0e0e0;
+      padding: 12px 15px;
+      text-align: left;
       vertical-align: middle;
       white-space: nowrap;
     }
-    th { 
-      background-color: #3498db; 
+
+    th {
+      background-color: #3498db;
       color: #ffffff;
       font-weight: 700;
       text-transform: uppercase;
     }
-    tr:nth-child(even) { 
-      background-color: #f8f8f8; 
+
+    tr:nth-child(even) {
+      background-color: #f8f8f8;
     }
+
     tr:hover {
       background-color: #eaf6fd;
       transition: background-color 0.3s ease;
     }
-    .loading, .error {
-      text-align: center; 
+
+    .loading,
+    .error {
+      text-align: center;
       padding: 20px;
-      font-style: italic; 
-      color: #555; 
+      font-style: italic;
+      color: #555;
     }
-    .error { color: red; }
+
+    .error {
+      color: red;
+    }
+
     .button-link {
       display: inline-block;
       padding: 10px 20px;
@@ -79,8 +95,11 @@
       font-size: 16px;
       margin-top: 15px;
     }
-    .button-link:hover { background-color: #45a049; }
-    
+
+    .button-link:hover {
+      background-color: #45a049;
+    }
+
     .detail-btn {
       padding: 5px 10px;
       background-color: #3498db;
@@ -90,38 +109,61 @@
       cursor: pointer;
       font-size: 14px;
     }
-    .detail-btn:hover { background-color: #2980b9; }
-    
+
+    .detail-btn:hover {
+      background-color: #2980b9;
+    }
+
     .modal-overlay {
-      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
       background-color: rgba(0, 0, 0, 0.6);
-      display: none; justify-content: center; align-items: center;
+      display: none;
+      justify-content: center;
+      align-items: center;
       z-index: 1000;
     }
+
     .modal-content {
-      background-color: white; padding: 25px; border-radius: 8px;
-      width: 90%; max-width: 500px;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+      background-color: white;
+      padding: 25px;
+      border-radius: 8px;
+      width: 90%;
+      max-width: 500px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
       position: relative;
     }
+
     .modal-close {
-      position: absolute; top: 10px; right: 15px;
-      font-size: 28px; font-weight: bold;
-      cursor: pointer; color: #555;
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      font-size: 28px;
+      font-weight: bold;
+      cursor: pointer;
+      color: #555;
     }
+
     .modal-content p {
-        margin: 10px 0; line-height: 1.6;
-        word-break: break-all;
+      margin: 10px 0;
+      line-height: 1.6;
+      word-break: break-all;
     }
+
     .modal-content p strong {
-        color: #2c3e50; display: inline-block; width: 120px;
+      color: #2c3e50;
+      display: inline-block;
+      width: 120px;
     }
 
     .table-wrapper {
       overflow-x: auto;
       -webkit-overflow-scrolling: touch;
     }
-    
+
     /* --- TOMBOL TENTANG HALAMAN BARU --- */
     #about-btn {
       position: absolute;
@@ -139,137 +181,333 @@
       line-height: 26px;
       text-align: center;
     }
+
     #about-btn:hover {
       background-color: #7f8c8d;
       color: white;
     }
 
     @media screen and (max-width: 768px) {
-      .container { padding: 15px; }
-      h1 { font-size: 1.5em; display: block; }
+      .container {
+        padding: 15px;
+      }
+
+      h1 {
+        font-size: 1.5em;
+        display: block;
+      }
+
       .header-container {
-        display: flex; flex-direction: column; align-items: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
       }
+
       .button-link {
-        margin-left: 0; margin-top: 20px; width: 100%; text-align: center;
+        margin-left: 0;
+        margin-top: 20px;
+        width: 100%;
+        text-align: center;
       }
-      #about-btn { top: 10px; right: 10px; }
+
+      #about-btn {
+        top: 10px;
+        right: 10px;
+      }
     }
   </style>
 </head>
+
 <body>
+  <!-- ================= MODAL AKSES SUPER AMAN ================= -->
+  <div id="access-modal" class="modal-overlay" style="display:flex;">
+    <div class="modal-content" style="max-width:400px;text-align:center;">
+      <h2 style="margin-top:0;color:#2c3e50;">🔐 Akses Terbatas</h2>
+      <p>Masukkan kode akses untuk melanjutkan</p>
 
-<div class="container">
-  <button id="about-btn" onclick="showAboutModal()">i</button>
-  <div class="header-container">
-    <h1>Data Akun Info GTK SDN TOYANING I</h1>
-    <a href="https://portal-admin-sd-toyaning-01.vercel.app/" class="button-link">Kembali Ke Portal Admin</a>
+      <input type="password" id="access-code" placeholder="Kode akses" autocomplete="off"
+        style="width:100%;padding:10px;font-size:16px;margin:15px 0;border-radius:5px;border:1px solid #ccc;" />
+
+      <button onclick="verifikasiKode()"
+        style="width:100%;padding:10px;font-size:16px;border:none;border-radius:5px;background:#3498db;color:white;cursor:pointer;">
+        Masuk
+      </button>
+
+      <p id="access-error" style="color:red;display:none;margin-top:10px;">
+        ❌ Kode salah
+      </p>
+    </div>
   </div>
-  
-  <div id="employee-data">
-    <p class="loading">Memuat data...</p>
+
+
+  <div class="container">
+    <button id="about-btn" onclick="showAboutModal()">i</button>
+    <div class="header-container">
+      <h1>Data Akun Info GTK SDN TOYANING I</h1>
+      <a href="https://portal-admin-sd-toyaning-01.vercel.app/" class="button-link">Kembali Ke Portal Admin</a>
+    </div>
+
+    <div id="employee-data">
+      <p class="loading">Memuat data...</p>
+    </div>
   </div>
-</div>
 
-<div id="modal-popup" class="modal-overlay" onclick="closeDetails()">
-  <div class="modal-content" onclick="event.stopPropagation()">
-    <span class="modal-close" onclick="closeDetails()">&times;</span>
-    <h2 style="color: #2c3e50; margin-top:0;">Detail Akun</h2>
-    <div id="modal-body"></div>
+  <div id="modal-popup" class="modal-overlay" onclick="closeDetails()">
+    <div class="modal-content" onclick="event.stopPropagation()">
+      <span class="modal-close" onclick="closeDetails()">&times;</span>
+      <h2 style="color: #2c3e50; margin-top:0;">Detail Akun</h2>
+      <div id="modal-body"></div>
+    </div>
   </div>
-</div>
 
-<div id="about-modal" class="modal-overlay" onclick="closeAboutModal()">
-  <div class="modal-content" onclick="event.stopPropagation()">
-    <span class="modal-close" onclick="closeAboutModal()">&times;</span>
-    <h2 style="color: #2c3e50; margin-top:0;">Tentang Halaman Ini</h2>
-    <p>Halaman ini berfungsi untuk menampilkan data akun Guru dan Tenaga Kependidikan (GTK) SDN TOYANING I.</p>
-    <p><strong>Fitur:</strong></p>
-    <ul>
-      <li>Data diambil secara otomatis dari Google Sheet.</li>
-      <li>Desain responsif untuk berbagai perangkat.</li>
-      <li>Informasi sensitif (email & kata sandi) disembunyikan dan hanya tampil di popup detail.</li>
-    </ul>
+  <div id="about-modal" class="modal-overlay" onclick="closeAboutModal()">
+    <div class="modal-content" onclick="event.stopPropagation()">
+      <span class="modal-close" onclick="closeAboutModal()">&times;</span>
+      <h2 style="color: #2c3e50; margin-top:0;">Tentang Halaman Ini</h2>
+      <p>Halaman ini berfungsi untuk menampilkan data akun Guru dan Tenaga Kependidikan (GTK) SDN TOYANING I.</p>
+      <p><strong>Fitur:</strong></p>
+      <ul>
+        <li>Data diambil secara otomatis dari Google Sheet.</li>
+        <li>Desain responsif untuk berbagai perangkat.</li>
+        <li>Informasi sensitif (email & kata sandi) disembunyikan dan hanya tampil di popup detail.</li>
+      </ul>
+    </div>
   </div>
-</div>
 
-<script>
-  const googleSheetUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRXU13UbknrYaLmaBvKGnAoYS3nOjC-RKJfpmmbBmmiiq7Kb2TvbXQZT8v_oItcDZ5XcsNga2gG3t_S/pub?gid=0&single=true&output=csv'; 
+  <script>
+    /* ==================================================
+       KEAMANAN SUPER AMAN
+       KODE AKSES DARI GOOGLE SHEET
+       AUTO LOGOUT 10 MENIT
+       ================================================== */
+    const LOG_URL = "https://script.google.com/macros/s/AKfycbxRm2Spqx-7jl_3AeuEOVL-C7pqIAI6j6x2ziiL2pZ2mV8Rf_973hYv_NsnpS-fed2SqA/exec";
 
-  // --- Fungsi untuk Modal Detail Akun ---
-  function showDetails(headers, rowData) {
-    const modalBody = document.getElementById('modal-body');
-    modalBody.innerHTML = '';
-    headers.forEach((header, index) => {
-      modalBody.innerHTML += `<p><strong>${header}:</strong> ${rowData[index]}</p>`;
-    });
-    document.getElementById('modal-popup').style.display = 'flex';
-  }
-  function closeDetails() {
-    document.getElementById('modal-popup').style.display = 'none';
-  }
+    const SHEET_KODE_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRk1xqC3HBySnV1gltkCvue2u17fmfAXJESrnyzeXMXu7BkRTsX8fDQPPUu8lXdwuVg7Pog0ck4yYhJ/pub?output=csv";
+    const SESSION_KEY = "akses_valid";
+    const TIME_KEY = "akses_waktu";
+    const AUTO_LOGOUT = 10 * 60 * 1000; // 10 menit
 
-  // --- Fungsi BARU untuk Modal Tentang Halaman ---
-  function showAboutModal() {
-    document.getElementById('about-modal').style.display = 'flex';
-  }
-  function closeAboutModal() {
-    document.getElementById('about-modal').style.display = 'none';
-  }
+    let KODE_AKSES = null;
 
-  async function fetchEmployeeData() {
-    try {
-      const response = await fetch(googleSheetUrl);
-      if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-      const csvText = await response.text();
-      const rows = csvText.split('\n').map(row => row.split(',')).filter(row => row.join('').trim() !== '');
+    function sekarang() {
+      return new Date().getTime();
+    }
 
-      if (rows.length < 2) {
-        document.getElementById('employee-data').innerHTML = '<p class="error">Tidak ada data ditemukan.</p>';
-        return;
+    // Ambil kode dari Google Sheet
+    async function ambilKodeAkses() {
+      const res = await fetch(SHEET_KODE_URL);
+      const text = await res.text();
+
+      // console.log("CSV RAW:", text); // <-- DEBUG PENTING
+
+      const lines = text
+        .replace(/\r/g, "")
+        .replace(/"/g, "")
+        .trim()
+        .split("\n")
+        .map(l => l.trim())
+        .filter(l => l !== "");
+
+      // Ambil kode dari baris TERAKHIR (paling aman)
+      if (lines.length < 2) {
+        return null;
       }
-      
-      const headers = rows[0].map(h => h.trim());
-      // --- TAMBAHAN: Cari index untuk EMAIL ---
-      const passwordIndex = headers.findIndex(h => h.toUpperCase() === 'KATA SANDI');
-      const emailIndex = headers.findIndex(h => h.toUpperCase() === 'EMAIL');
 
-      let html = '<div class="table-wrapper"><table><thead><tr>';
+      // Support jika pakai ; atau ,
+      const lastLine = lines[lines.length - 1];
+      const kode = lastLine.includes(";")
+        ? lastLine.split(";")[0]
+        : lastLine.split(",")[0];
+
+      return kode.trim();
+    }
+
+
+    // Cek akses
+    async function cekAkses() {
+      KODE_AKSES = await ambilKodeAkses();
+
+      const akses = sessionStorage.getItem(SESSION_KEY);
+      const waktu = sessionStorage.getItem(TIME_KEY);
+
+      if (akses === "true" && waktu && (sekarang() - waktu) < AUTO_LOGOUT) {
+        document.getElementById("access-modal").style.display = "none";
+        resetTimer();
+      } else {
+        logout();
+      }
+    }
+
+    // Verifikasi kode
+    async function verifikasiKode() {
+      const input = document.getElementById("access-code").value;
+      const error = document.getElementById("access-error");
+
+      if (!KODE_AKSES) {
+        KODE_AKSES = await ambilKodeAkses();
+      }
+
+      if (
+        input.trim().toLowerCase() ===
+        KODE_AKSES.trim().toLowerCase()
+      ) {
+        logAkses("LOGIN BERHASIL");
+
+        sessionStorage.setItem(SESSION_KEY, "true");
+        sessionStorage.setItem(TIME_KEY, sekarang());
+        document.getElementById("access-modal").style.display = "none";
+        resetTimer();
+      } else {
+        logAkses("LOGIN GAGAL");
+
+        error.textContent = "❌ Kode salah";
+        error.style.display = "block";
+      }
+    }
+
+
+    // ===== FUNGSI GLOBAL (WAJIB DI LUAR) =====
+    function resetTimer() {
+      sessionStorage.setItem(TIME_KEY, sekarang());
+    }
+
+    function logout() {
+      sessionStorage.clear();
+      document.getElementById("access-modal").style.display = "flex";
+    }
+
+    // Deteksi aktivitas
+    ["click", "mousemove", "keydown", "scroll"].forEach(evt => {
+      document.addEventListener(evt, resetTimer);
+    });
+
+    // Logout saat tab ditutup
+    window.addEventListener("beforeunload", () => {
+      sessionStorage.clear();
+    });
+
+    // Proteksi dasar
+    document.addEventListener("contextmenu", e => e.preventDefault());
+    document.addEventListener("keydown", e => {
+      if (
+        e.key === "F12" ||
+        (e.ctrlKey && e.shiftKey && ["I", "J", "C"].includes(e.key)) ||
+        (e.ctrlKey && e.key === "U")
+      ) {
+        e.preventDefault();
+      }
+    });
+
+    // Jalankan
+    window.onload = cekAkses;
+
+
+
+    //LOG DATA AKSES
+    function getBrowser() {
+      const ua = navigator.userAgent;
+      if (ua.includes("Chrome")) return "Chrome";
+      if (ua.includes("Firefox")) return "Firefox";
+      if (ua.includes("Edge")) return "Edge";
+      if (ua.includes("Safari")) return "Safari";
+      return "Unknown";
+    }
+
+    function logAkses(status) {
+      fetch(LOG_URL, {
+        method: "POST",
+        mode: "no-cors", // <-- KUNCI UTAMA
+        headers: {
+          "Content-Type": "text/plain"
+        },
+        body: JSON.stringify({
+          status: status,
+          device: navigator.platform,
+          browser: navigator.userAgent
+        })
+      }).catch(() => { });
+    }
+
+
+
+
+    const googleSheetUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRXU13UbknrYaLmaBvKGnAoYS3nOjC-RKJfpmmbBmmiiq7Kb2TvbXQZT8v_oItcDZ5XcsNga2gG3t_S/pub?gid=0&single=true&output=csv';
+
+    // --- Fungsi untuk Modal Detail Akun ---
+    function showDetails(headers, rowData) {
+      const modalBody = document.getElementById('modal-body');
+      modalBody.innerHTML = '';
       headers.forEach((header, index) => {
-        // --- MODIFIKASI: Sembunyikan KATA SANDI dan EMAIL dari header ---
-        if (index !== passwordIndex && index !== emailIndex) {
-          html += `<th>${header}</th>`;
-        }
+        modalBody.innerHTML += `<p><strong>${header}:</strong> ${rowData[index]}</p>`;
       });
-      html += '<th>AKSI</th></tr></thead><tbody>';
+      document.getElementById('modal-popup').style.display = 'flex';
+    }
+    function closeDetails() {
+      document.getElementById('modal-popup').style.display = 'none';
+    }
 
-      for (let i = 1; i < rows.length; i++) {
-        const rowData = rows[i].map(cell => cell.trim());
-        html += '<tr>';
-        rowData.forEach((cell, index) => {
-          // --- MODIFIKASI: Sembunyikan data KATA SANDI dan EMAIL dari tabel ---
+    // --- Fungsi BARU untuk Modal Tentang Halaman ---
+    function showAboutModal() {
+      document.getElementById('about-modal').style.display = 'flex';
+    }
+    function closeAboutModal() {
+      document.getElementById('about-modal').style.display = 'none';
+    }
+
+    async function fetchEmployeeData() {
+      try {
+        const response = await fetch(googleSheetUrl);
+        if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+        const csvText = await response.text();
+        const rows = csvText.split('\n').map(row => row.split(',')).filter(row => row.join('').trim() !== '');
+
+        if (rows.length < 2) {
+          document.getElementById('employee-data').innerHTML = '<p class="error">Tidak ada data ditemukan.</p>';
+          return;
+        }
+
+        const headers = rows[0].map(h => h.trim());
+        // --- TAMBAHAN: Cari index untuk EMAIL ---
+        const passwordIndex = headers.findIndex(h => h.toUpperCase() === 'KATA SANDI');
+        const emailIndex = headers.findIndex(h => h.toUpperCase() === 'EMAIL');
+
+        let html = '<div class="table-wrapper"><table><thead><tr>';
+        headers.forEach((header, index) => {
+          // --- MODIFIKASI: Sembunyikan KATA SANDI dan EMAIL dari header ---
           if (index !== passwordIndex && index !== emailIndex) {
-            html += `<td>${cell}</td>`;
+            html += `<th>${header}</th>`;
           }
         });
-        
-        const headersJson = JSON.stringify(headers);
-        const rowDataJson = JSON.stringify(rowData);
-        html += `<td><button class="detail-btn" onclick='showDetails(${headersJson}, ${rowDataJson})'>Detail</button></td>`;
-        html += '</tr>';
+        html += '<th>AKSI</th></tr></thead><tbody>';
+
+        for (let i = 1; i < rows.length; i++) {
+          const rowData = rows[i].map(cell => cell.trim());
+          html += '<tr>';
+          rowData.forEach((cell, index) => {
+            // --- MODIFIKASI: Sembunyikan data KATA SANDI dan EMAIL dari tabel ---
+            if (index !== passwordIndex && index !== emailIndex) {
+              html += `<td>${cell}</td>`;
+            }
+          });
+
+          const headersJson = JSON.stringify(headers);
+          const rowDataJson = JSON.stringify(rowData);
+          html += `<td><button class="detail-btn" onclick='showDetails(${headersJson}, ${rowDataJson})'>Detail</button></td>`;
+          html += '</tr>';
+        }
+        html += '</tbody></table></div>';
+
+        document.getElementById('employee-data').innerHTML = html;
+
+      } catch (error) {
+        console.error('Error fetching data:', error);
+        document.getElementById('employee-data').innerHTML = '<p class="error">Gagal memuat data. Detail error: ' + error.message + '</p>';
       }
-      html += '</tbody></table></div>';
-
-      document.getElementById('employee-data').innerHTML = html;
-
-    } catch (error) {
-      console.error('Error fetching data:', error);
-      document.getElementById('employee-data').innerHTML = '<p class="error">Gagal memuat data. Detail error: ' + error.message + '</p>';
     }
-  }
 
-  fetchEmployeeData();
-</script>
+    fetchEmployeeData();
+  </script>
 
 </body>
+
 </html>
